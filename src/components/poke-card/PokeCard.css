@@ -1,0 +1,47 @@
+.poke-card{
+    float: left;
+    list-style: none;
+    margin: 10px;
+    height: 200px;
+    width: 200px;
+    background-color: black;
+    border-radius: 10px;
+    background-image: linear-gradient(to right bottom, red,blue);
+}
+
+.poke-card .white-cover{
+    background-color: white;
+    height: calc(100% - 26px);
+    width: calc(100% - 26px);
+    border-radius: 6px;
+    margin: 3px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    transition: all 0.5s ease;
+    cursor: pointer;
+}
+
+.poke-card .white-cover:hover{
+    background-color: rgb(230, 230, 230);
+}
+
+.poke-card .white-cover:active{
+    background-color: rgb(200, 200, 200);
+}
+
+.poke-card .white-cover h1{
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 800;
+    text-transform: uppercase;    
+}
+
+.poke-card .white-cover h2{
+    margin: 0;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: rgb(169, 169, 169);    
+}
