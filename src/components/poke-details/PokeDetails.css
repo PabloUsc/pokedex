@@ -3,7 +3,8 @@
     min-width: 600px;
     height: 100vh;
     background-color: rgb(200, 200, 200);
-    position: relative;
+    position: sticky;
+    top: 0;
     overflow: hidden;
 }
 

@@ -1,15 +1,13 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import PokeCard from './components/poke-card/PokeCard';
 import PokeDetails from './components/poke-details/PokeDetails';
 
 function App() {
 
-  const [selectedPokemon, setSelectedPokemon] = useState(null);
+  const [selectedPokemon, setSelectedPokemon] = useState(0);
 
-  console.log(selectedPokemon);
-
-  const pokemons = Array.from({length: 20}, (_,index) => {
+  const [pokemons, setPokemons] = useState(Array.from({length: 20}, (_,index) => {
     return {
       
       name: 'pikachu', 
@@ -27,7 +25,24 @@ function App() {
         speed: 7,
       },
     }
-  });
+  }));
+
+  const getPokeData = async () => {
+    const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=20');
+    const data = await response.json();
+    const results = data.results;
+
+    for (let index = 0; index < results.length; index++) {     
+      const pokemon = results[index];
+      const pokeData = await fetch('https://pokeapi.co/api/v2/pokemon/'+pokemon.name);
+      const pokeJson = await pokeData.json();
+      results[index] = pokeJson;
+    }
+    setPokemons(results);
+    
+  }
+
+  useEffect(() => getPokeData, []);
 
   return (
     <div className="App">
@@ -38,7 +53,7 @@ function App() {
           ))
         }
       </ul>
-      <PokeDetails/>
+      <PokeDetails pokemon={pokemons[selectedPokemon]}/>
     </div>
   );
 }
